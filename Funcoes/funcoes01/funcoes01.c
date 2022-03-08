@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <locale.h>
 
+int pJovem(numDependentes);
+int pAdulto(numDependentes);
+
+
 void main ()
 {
 
