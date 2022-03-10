@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 
 void Dobro();
 int Venda ();
@@ -32,6 +33,8 @@ void main (){
             Tabuada(Numero, QtdeElem);
         break;
         }
+        Sleep(3000);
+        system("cls");
         printf("\nDigite de novo a opcao: ");
         scanf("%i", &Opcao);
     }
@@ -62,13 +65,12 @@ int Venda (){
 
 float CalcDesconto(float VC){
     float Desc;
-    if (VC >= 800){
-        Desc = 0.15 * VC;
-    }
-    else{
-        Desc = 0;
-    }
-    return Desc;
+    if (VC >= 800)
+        return 0.15 * VC;
+    else
+        return 0;
+
+    //return Desc;
 }
 
 void Media (){
@@ -86,13 +88,10 @@ void Media (){
         printf("A media das provas e: %.2f\n", CalcMedia(Prova1, Prova2));
 
         if (CalcMedia(Prova1, Prova2) >= 5)
-        {
             printf("Aprovado\n");
-        }
         else
-        {
             printf("Reprovado\n");
-        }
+
         printf("Digite o codigo: ");
         scanf("%i", &Codigo);
     }
@@ -100,11 +99,7 @@ void Media (){
 
 
 float CalcMedia(float P1, float P2){
-    float Media;
-
-    Media = (P1 + P2) / 2;
-
-    return Media;
+    return (P1 + P2) / 2;
 }
 
 void Tabuada(F, Q){
