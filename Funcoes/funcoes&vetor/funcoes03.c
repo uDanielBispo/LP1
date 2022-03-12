@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <locale.h>
 #include <windows.h>
+#include <math.h>
 
-float Vetor[5];
-
-float fEntradaDeDados();
+float fEntradaDeDados(float Vetor[5]);
 float fMedia(float Vetor[5]);
 float fMediaPonderada(float Vetor[5]);
 float fAcharMaiorEMenor(float Vetor[5]);
@@ -14,9 +13,10 @@ float fDesvioPadrao(float Vetor[5]);
 void main(void){
    setlocale(LC_ALL, "Portuguese");
    int Escolha;
+   float Vetor[5];
 
    do{
-      printf("\nEscolha:\n1- Entrar com dados\n2- Calcular a média aritimética simples dos dados\n3- Calcular a média ponderada dos dados\n4- Calcular o desvio padrão dos dados\n5- Achar o maior valor e o menor valor\n6- Sair do programa\n\nDigite qual funcionalidade deseja utilizar: ");
+      printf("\nEscolha:\n1- Entrar com dados\n2- Calcular a média aritmética simples dos dados\n3- Calcular a média ponderada dos dados\n4- Calcular o desvio padrão dos dados\n5- Achar o maior valor e o menor valor\n6- Sair do programa\n\nDigite qual funcionalidade deseja utilizar: ");
       scanf("%i", &Escolha);
       switch (Escolha){
       case 1:
@@ -24,8 +24,7 @@ void main(void){
          break;
       case 2:
          system("cls");
-         //fMedia(Vetor);
-         printf("A média aritimética dos valores é: %.3f", fMedia(Vetor));
+         printf("A média aritmética dos valores é: %.3f", fMedia(Vetor));
          Sleep(3000);
          system("cls");
          break;
@@ -57,7 +56,7 @@ void main(void){
    }while(Escolha != 6 );
 }
 
-float fEntradaDeDados(){
+float fEntradaDeDados(float Vetor[5]){
    int i;
    float Valores;
    system("cls");
@@ -66,7 +65,7 @@ float fEntradaDeDados(){
       printf("\nDigíte o %iº valor: ",i+1);
       scanf("%f", &Valores);
       Vetor[i] = Valores;
-      printf("Valor da posição %iº = %.2f\n",i , Vetor[i]);
+      printf("Valor da posição %iº = %.2f\n",i+1 , Vetor[i]);
    }
    system("cls");
    printf("======================================================\nValores adicionados...\n======================================================");
@@ -76,12 +75,7 @@ float fEntradaDeDados(){
 }
 
 float fMedia(float Vetor[5]){
-   float Media;
-   Media = fSoma(Vetor) / 5;
-   //printf("A média aritimética dos valores é: %.3f", Media);
-   //Sleep(3000);
-   //system("cls");
-   return Media;
+   return fSoma(Vetor) / 5;
 }
 
 float fMediaPonderada(float Vetor[5]){
@@ -110,11 +104,11 @@ float fMediaPonderada(float Vetor[5]){
 
 float fAcharMaiorEMenor(float Vetor[5]){
    int i;
-   float Maior=0, Menor=0;
+   float Maior, Menor;
    Maior = Vetor[0];
    Menor = Vetor[0];
-   for(i=0; i<=4; i++){
 
+   for(i=1; i<=4; i++){
       if(Vetor[i] > Maior)
          Maior = Vetor[i];
 
@@ -128,16 +122,28 @@ float fAcharMaiorEMenor(float Vetor[5]){
    system("cls");
 }
 
+//RE-VER
 float fDesvioPadrao(float Vetor[5]){
    int i;
-   float vDesvioPadrao[5];
+   float vDesvio[5], Variancia=0, DesvioPadrao;
+
    for(i=0; i<=4; i++){
-      if(fMedia(Vetor)>Vetor[i])
-         vDesvioPadrao[i] = fMedia(Vetor) - Vetor[i];
+      vDesvio[i] = fMedia(Vetor) - Vetor[i];
+      //Mostrando o módulo do numero
+      if(vDesvio[i] < 0)
+         printf("Desvio padrão: %.2f \n", vDesvio[i]*-1);
       else
-         vDesvioPadrao[i] =  Vetor[i] - fMedia(Vetor);
-      printf("Desvio padrão: %.2f \n", vDesvioPadrao[i]);
+         printf("Desvio padrão: %.2f \n", vDesvio[i]);
+
+      Variancia += pow(vDesvio[i], 2);
+
    }
+
+   Variancia = Variancia/i;
+   DesvioPadrao = sqrt(Variancia);
+   printf("Variância: %.2f \nDesvio Padrão: %.3f", Variancia, DesvioPadrao);
+   Sleep(3000);
+   system("cls");
 }
 
 float fSoma(float Vetor[5]){
@@ -149,7 +155,6 @@ float fSoma(float Vetor[5]){
 
    return Soma;
 }
-
 
 
 
