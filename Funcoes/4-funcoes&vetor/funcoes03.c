@@ -3,12 +3,12 @@
 #include <windows.h>
 #include <math.h>
 
-float fEntradaDeDados(float Vetor[5]);
+void fEntradaDeDados(float Vetor[5]);
 float fMedia(float Vetor[5]);
-float fMediaPonderada(float Vetor[5]);
-float fAcharMaiorEMenor(float Vetor[5]);
+void fMediaPonderada(float Vetor[5]);
+void fAcharMaiorEMenor(float Vetor[5]);
+void fDesvioPadrao(float Vetor[5]);
 float fSoma(float Vetor[5]);
-float fDesvioPadrao(float Vetor[5]);
 
 void main(void){
    setlocale(LC_ALL, "Portuguese");
@@ -56,17 +56,17 @@ void main(void){
    }while(Escolha != 6 );
 }
 
-float fEntradaDeDados(float Vetor[5]){
+//Por que isso funciona sem retornar?
+void fEntradaDeDados(float Vetor[5]){
    int i;
    float Valores;
    system("cls");
 
    for(i=0; i<=4; i++){
       printf("\nDigíte o %iº valor: ",i+1);
-      scanf("%f", &Valores);
-      Vetor[i] = Valores;
-      printf("Valor da posição %iº = %.2f\n",i+1 , Vetor[i]);
+      scanf("%f", &Vetor[i]);
    }
+
    system("cls");
    printf("======================================================\nValores adicionados...\n======================================================");
    Sleep(1000);
@@ -78,7 +78,7 @@ float fMedia(float Vetor[5]){
    return fSoma(Vetor) / 5;
 }
 
-float fMediaPonderada(float Vetor[5]){
+void fMediaPonderada(float Vetor[5]){
    int i;
    float Peso;
    float ValMediaPonderada[5],SomaVal = 0, SomaPeso = 0, MediaPonderada;
@@ -92,7 +92,7 @@ float fMediaPonderada(float Vetor[5]){
          printf("Valor da posição %iº = %.2f\nSoma: %.2f\nSomaPeso: %.2f\n",i+1 , ValMediaPonderada[i], SomaVal, SomaPeso);
    }
 
-   Sleep(1000);
+   Sleep(3000);
    system("cls");
 
    MediaPonderada = SomaVal/SomaPeso;
@@ -102,7 +102,7 @@ float fMediaPonderada(float Vetor[5]){
    system("cls");
 }
 
-float fAcharMaiorEMenor(float Vetor[5]){
+void fAcharMaiorEMenor(float Vetor[5]){
    int i;
    float Maior, Menor;
    Maior = Vetor[0];
@@ -123,7 +123,7 @@ float fAcharMaiorEMenor(float Vetor[5]){
 }
 
 //RE-VER
-float fDesvioPadrao(float Vetor[5]){
+void fDesvioPadrao(float Vetor[5]){
    int i;
    float vDesvio[5], Variancia=0, DesvioPadrao;
 
@@ -136,12 +136,12 @@ float fDesvioPadrao(float Vetor[5]){
          printf("Desvio padrão: %.2f \n", vDesvio[i]);
 
       Variancia += pow(vDesvio[i], 2);
-
    }
 
-   Variancia = Variancia/i;
+   Variancia /= i;
    DesvioPadrao = sqrt(Variancia);
-   printf("Variância: %.2f \nDesvio Padrão: %.3f", Variancia, DesvioPadrao);
+   printf("Variância: %.2f \nDesvio Padrão: %f", Variancia, DesvioPadrao);
+
    Sleep(3000);
    system("cls");
 }
