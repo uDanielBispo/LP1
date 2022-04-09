@@ -1,6 +1,8 @@
 #include <stdio.h>
+
 void main(void){
    int
+   i,
    l,
    c,
    cAusenciaPecas=0,
@@ -15,10 +17,35 @@ void main(void){
    coluna=8,
    tab[linha][coluna];
 
-   for(l=0; l<linha; l++){
-      for(c=0; c<coluna; c++){
+   for(l=0; l < linha; l++)
+      for(c=0; c < coluna; c++)
          scanf("%i", &tab[l][c]);
-         switch(tab[l][c]){
+
+   //Jeito novo
+   for(l=0; l < linha; l++){
+      for(c=0; c < coluna; c++){
+         printf("[%i]", tab[l][c]);
+         resultado[tab[l][c]] = resultado[tab[l][c]] + 1;
+      }
+      printf("\n");
+   }
+   printf("\nAusencia de pecas: %i\nPeao: %i\nCavalo: %i\nTorre: %i\nBispo: %i\nRei: %i\nRainha: %i\n", resultado[0], resultado[1], resultado[2], resultado[3], resultado[4], resultado[5], resultado[6]);
+}
+
+/*
+ENTRADA TESTE
+6 0 0 5 0 0 1 1
+0 1 0 2 0 3 0 2
+0 1 1 1 0 1 0 0
+0 0 2 0 3 4 3 1
+0 1 1 0 1 0 0 0
+0 1 3 0 4 0 1 1
+0 0 0 2 2 2 1 6
+6 6 6 6 6 6 6 6
+*/
+/*
+//jeito antigo
+         /*switch(tab[l][c]){
             case 0:
                cAusenciaPecas += 1;
          break;
@@ -41,7 +68,4 @@ void main(void){
                cRainha += 1;
          break;
          }
-      }
-   }
-   printf("Ausencia de pecas: %i\nPeao: %i\nCavalo: %i\nTorre: %i\nBispo: %i\nRei: %i\nRainha: %i\n", cAusenciaPecas, cPeao, cCavalo, cTorre, cBispo, cRei, cRainha);
-}
+*/
