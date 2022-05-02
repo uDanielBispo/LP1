@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include "substring.h"
+
 //Paulo Gileandes da Silva
 //Rayane Estéfane de Almeida Pereira
 
@@ -15,27 +17,23 @@ void main(void){
 
 void ultimoEPrimeiroNome(char nome[50]){
 
-    int  enderecoEspaco2, z=0;
+    int  primeiroEspaco, ultimoEspaco;
     char primeiroNome[50], ultimoNome[50];
-
-    strcpy(primeiroNome, nome);
 
     for(int i=0; i<strlen(nome); i++)
         if(nome[i] == ' '){
-            primeiroNome[i] = '\0';
-            break;
+            primeiroEspaco = i;
+            break;//IMPORTANTE
         }
-
-    for(int i=strlen(nome); i>0; i--)
+    for(int i=strlen(nome)-1; i>=0; i--)
         if(nome[i] == ' '){
-            enderecoEspaco2 = i;
-            break;
+            ultimoEspaco = i;
+            break;//IMPORTANTE
         }
 
-    for(int i = enderecoEspaco2+1; i < strlen(nome); i++, z++)
-        ultimoNome[z] = nome[i];
+    subString(nome, 0, primeiroEspaco, primeiroNome);
+    subString(nome, ultimoEspaco+1, strlen(nome)-1, ultimoNome);
 
-    ultimoNome[z] = '\0';
     printf("%s, %s", ultimoNome, primeiroNome);
 }
 

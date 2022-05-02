@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include "substring.h"
 
 void main(void){
     char palavra[20], destino[20];
     int posicaoInicial, posicaoFinal, tamanhoPalavra = strlen(palavra);
-    
+
     printf("Digite a palavra: ");
-    gets(palavra);   
+    gets(palavra);
     fflush(stdin);
     printf("\nDigite a posicao incial: ");
     scanf("%i", &posicaoInicial);
@@ -17,7 +18,7 @@ void main(void){
     printf("%s", destino);
 }
 
-void subString(char palavra[20], int posicaoInicial, int posicaoFinal, char destino[20]){
+/*void subString(char palavra[20], int posicaoInicial, int posicaoFinal, char destino[20]){
     int caminhoPercorrido = posicaoFinal - posicaoInicial;
 
     if(caminhoPercorrido > 0)
@@ -30,4 +31,4 @@ void subString(char palavra[20], int posicaoInicial, int posicaoFinal, char dest
     }
     else
     strcpy(destino, "posicao inicial maior do que a posicao final");
-}
+}*/
