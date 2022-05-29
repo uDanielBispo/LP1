@@ -18,7 +18,7 @@ void subString(char palavra[50], int posicaoInicial, int posicaoFinal, char dest
         destino[caminhoPercorrido+1] = '\0';
     }
     else
-    //strcpy(destino, "posicao inicial maior do que a posicao final");
+    strcpy(destino, "posicao inicial maior do que a posicao final");
 }
 
 
