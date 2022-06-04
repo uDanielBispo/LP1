@@ -17,8 +17,8 @@ int main (void){
         if(pos==0)
             break;
 
-        fflush(stdin);
         printf("Digite a primeira palavra: ");
+        fflush(stdin);
         gets(palavra1);
 
         fflush(stdin);
